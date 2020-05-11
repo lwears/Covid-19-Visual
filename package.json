@@ -9,7 +9,7 @@
   "scripts": {
     "install": "cd server && npm install",
     "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
     "start-client": "cd client && npm start",
     "start": "node ./server/build/src/index.js"
   },

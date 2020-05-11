@@ -1,13 +1,18 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 import covid19Router from './routes/covid19Stats';
 import indexRouter from './routes/index';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, './client/build')));
+app.use('/api/covidstats', covid19Router);
+app.use('/', indexRouter);
 
-function normalizePort(val) {
+function normalizePort(val: string): number | string | boolean {
   const port = parseInt(val, 10);
   if (Number.isNaN(port)) return val;
   if (port >= 0) return port;
@@ -15,9 +20,6 @@ function normalizePort(val) {
 }
 
 const PORT = normalizePort(process.env.PORT || '3001');
-
-app.use('/api/covidstats', covid19Router);
-app.use('/', indexRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
