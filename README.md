@@ -32,5 +32,5 @@ If the web browser doesnt open automatically browse to https://localhost:3000
 - Supertest
 
 #### To run
-cd server
-npm run test
+- cd server
+- npm run test
