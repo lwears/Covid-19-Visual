@@ -26,6 +26,5 @@ function normalizePort(val) {
 const PORT = normalizePort(process.env.PORT || '3000');
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
-    console.log(path_1.default.join(__dirname, '../../../client/build'));
 });
 exports.default = app;

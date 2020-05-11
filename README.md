@@ -2,6 +2,9 @@
 
 Covid-19 Visualiser
 
+#### Deployed via Heroku:
+https://lwears-covid19-visualizer.herokuapp.com/
+
 ## Get Started Locally
 
 - Clone repo
