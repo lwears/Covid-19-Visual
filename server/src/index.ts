@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, '../../client/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 app.use('/', indexRouter);
 app.use('/api/covidstats', covid19Router);
 
@@ -23,7 +23,7 @@ const PORT = normalizePort(process.env.PORT || '3000');
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log(path.join(__dirname, '../../client/build'));
+  console.log(path.join(__dirname, '../client/build'));
 });
 
 export default app;
