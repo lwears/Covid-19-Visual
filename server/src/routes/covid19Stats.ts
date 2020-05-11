@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', async (_req, res) => {
   try {
-    const results = await covid19Service.getAllData();
+    const results = await covid19Service.newTopology();
     res.json(results);
   } catch (error) {
     res.status(500);

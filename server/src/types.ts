@@ -1,10 +1,28 @@
-export interface State {
+export interface BasicState {
   state: string;
   hospitalizedCurrently: number;
+  fips: string;
+  death: number;
+  recovered: number;
 }
 
-export interface ExtendedState extends State {
+export interface ExtendedState extends BasicState {
   total3Days: number;
+}
+
+export interface StateProperties {
+  name: string;
+  state: string;
+  hospitalizedCurrently: number;
+  fips: string;
+  total3Days: number;
+}
+
+export interface StateGeometries {
+  type: 'Topology';
+  arcs: number[][][];
+  id: string;
+  properties: StateProperties;
 }
 
 export interface IncomingState {

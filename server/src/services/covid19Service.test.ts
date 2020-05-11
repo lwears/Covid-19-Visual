@@ -31,18 +31,6 @@ describe('Covid19 Service - get3DayTotal Function', () => {
     expect(result).not.toBe(0);
     done();
   });
-  // test('covid19Service.getStateStats() returns array containing state objects', async (done) => {
-  //   expect.assertions(1);
-  //   const result = await covid19Service.getStateStats();
-  //   expect(result).toEqual(
-  //     expect.arrayContaining([
-  //       expect.objectContaining({ state: 'AK' }),
-  //       expect.objectContaining({ state: 'AL' }),
-  //       expect.objectContaining({ state: 'AR' }),
-  //     ])
-  //   );
-  //   done();
-  // });
 });
 
 describe('Covid19 Service - getAllData Function', () => {
@@ -71,6 +59,7 @@ describe('Covid19 Service - getAllData Function', () => {
     expect(result[0]).toHaveProperty('state');
     expect(result[0]).toHaveProperty('hospitalizedCurrently');
     expect(result[0]).toHaveProperty('total3Days');
+    expect(result[0]).toHaveProperty('fips');
     done();
   });
 });
