@@ -8,9 +8,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, './client/build')));
-app.use('/api/covidstats', covid19Router);
+app.use(express.static(path.join(__dirname, '../../client/build')));
 app.use('/', indexRouter);
+app.use('/api/covidstats', covid19Router);
 
 function normalizePort(val: string): number | string | boolean {
   const port = parseInt(val, 10);
@@ -19,7 +19,7 @@ function normalizePort(val: string): number | string | boolean {
   return false;
 }
 
-const PORT = normalizePort(process.env.PORT || '3001');
+const PORT = normalizePort(process.env.PORT || '3000');
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

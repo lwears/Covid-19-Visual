@@ -12,9 +12,9 @@ const app = express_1.default();
 app.use(cors_1.default());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
-app.use(express_1.default.static(path_1.default.join(__dirname, './client/build')));
-app.use('/api/covidstats', covid19Stats_1.default);
+app.use(express_1.default.static(path_1.default.join(__dirname, '../../client/build')));
 app.use('/', index_1.default);
+app.use('/api/covidstats', covid19Stats_1.default);
 function normalizePort(val) {
     const port = parseInt(val, 10);
     if (Number.isNaN(port))
@@ -23,7 +23,7 @@ function normalizePort(val) {
         return port;
     return false;
 }
-const PORT = normalizePort(process.env.PORT || '3001');
+const PORT = normalizePort(process.env.PORT || '3000');
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
