@@ -6,6 +6,8 @@ Covid-19 Visualiser
 
 - Clone repo
 - npm install
+- npm install-client
+- npm build-client
 - npm start
 
 If the web browser doesnt open automatically browse to https://localhost:3000
@@ -28,3 +30,7 @@ If the web browser doesnt open automatically browse to https://localhost:3000
 
 - Jest
 - Supertest
+
+#### To run
+cd server
+npm run test
