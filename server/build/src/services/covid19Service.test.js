@@ -36,7 +36,7 @@ describe('Covid19 Service - getStateStats Function', () => {
 describe('Covid19 Service - get3DayTotal Function', () => {
     test('covid19Service.get3DayTotal() returns number', (done) => __awaiter(void 0, void 0, void 0, function* () {
         expect.assertions(2);
-        const result = yield covid19Service_1.default.get3DayTotal('AK');
+        const result = yield covid19Service_1.default.get3DayTotal('AL');
         expect(Number.isInteger(result)).toBeTruthy();
         expect(result).not.toBe(0);
         done();
@@ -61,7 +61,7 @@ describe('Covid19 Service - getAllData Function', () => {
         done();
     }));
     test('covid19Service.getAllData() returns array containing remapped state objects', (done) => __awaiter(void 0, void 0, void 0, function* () {
-        expect.assertions(3);
+        expect.assertions(4);
         const result = yield covid19Service_1.default.getAllData();
         expect(result[0]).toHaveProperty('state');
         expect(result[0]).toHaveProperty('hospitalizedCurrently');
