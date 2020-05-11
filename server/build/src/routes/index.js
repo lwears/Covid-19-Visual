@@ -8,7 +8,7 @@ const path_1 = __importDefault(require("path"));
 const router = express_1.default.Router();
 /* GET React Frontend. */
 router.get('/', (_req, res) => {
-    console.log(`${path_1.default.resolve('../')}/covid-19-web-app/client/build/index.html`);
-    res.sendFile(`${path_1.default.resolve('../')}/covid-19-web-app/client/build/index.html`);
+    console.log(`${path_1.default.resolve('../')}covid-19-web-app/client/build/index.html`);
+    res.sendFile(`${path_1.default.resolve('../')}covid-19-web-app/client/build/index.html`);
 });
 exports.default = router;
