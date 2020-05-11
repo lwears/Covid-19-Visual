@@ -12,13 +12,16 @@ Covid-19 Visualiser
 
 If the web browser doesnt open automatically browse to https://localhost:3000
 
+
 ## Frontend
 
 - React
+- TypeScript
 
 ## Backend
 
 - NodeJS & Express
+- TypeScript
 
 ### Linting
 
