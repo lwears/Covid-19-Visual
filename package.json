@@ -1,0 +1,26 @@
+{
+  "name": "covid-19-web-app",
+  "version": "1.0.0",
+  "description": "Covid 19 Visualizer",
+  "main": "index.js",
+  "dependencies": {
+  },
+  "devDependencies": {},
+  "scripts": {
+    "install": "cd server && npm install",
+    "install-client": "cd client && npm install",
+    "start-client": "cd client && npm start",
+    "start": "node ./server/build/src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lwears/Covid-19-Visual.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lwears/Covid-19-Visual/issues"
+  },
+  "homepage": "https://github.com/lwears/Covid-19-Visual.git#readme"
+}

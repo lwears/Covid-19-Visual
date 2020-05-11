@@ -19,7 +19,7 @@ const MapChart = () => {
   return (
     <>
       <ComposableMap data-tip='' projection='geoAlbersUsa'>
-        <Geographies geography={'http://localhost:3001/api/covidstats'}>
+        <Geographies geography={'/api/covidstats'}>
           {({ geographies }) =>
             geographies.map((geo) => {
               const { name, hospitalizedCurrently, total3Days, death, recovered } = geo.properties;
