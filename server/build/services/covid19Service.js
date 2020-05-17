@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
-const states_10m_json_1 = __importDefault(require("../../data/states-10m.json"));
 const baseUrl = 'https://covidtracking.com/api/v1/states/';
 const getStateStats = () => __awaiter(void 0, void 0, void 0, function* () {
     const { data } = yield axios_1.default.get(`${baseUrl}current.json`);
@@ -46,24 +45,8 @@ const getAllData = () => __awaiter(void 0, void 0, void 0, function* () {
     })));
     return result;
 });
-const updateGeometries = () => __awaiter(void 0, void 0, void 0, function* () {
-    const states = yield getAllData();
-    return states_10m_json_1.default.objects.states.geometries.map((place) => {
-        const stateToCopy = states.find((state) => state.fips === place.id);
-        const newPlace = JSON.parse(JSON.stringify(place));
-        newPlace.properties = Object.assign(Object.assign({}, place.properties), stateToCopy);
-        return newPlace;
-    });
-});
-const newTopology = () => __awaiter(void 0, void 0, void 0, function* () {
-    const topologyClone = JSON.parse(JSON.stringify(states_10m_json_1.default));
-    topologyClone.objects.states.geometries = yield updateGeometries();
-    return topologyClone;
-});
 exports.default = {
     getStateStats,
     getAllData,
     get3DayTotal,
-    newTopology,
-    updateGeometries,
 };

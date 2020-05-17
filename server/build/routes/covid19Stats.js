@@ -17,7 +17,7 @@ const covid19Service_1 = __importDefault(require("../services/covid19Service"));
 const router = express_1.default.Router();
 router.get('/', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const results = yield covid19Service_1.default.newTopology();
+        const results = yield covid19Service_1.default.getAllData();
         res.json(results);
     }
     catch (error) {

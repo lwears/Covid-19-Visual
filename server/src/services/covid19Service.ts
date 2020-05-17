@@ -1,12 +1,5 @@
 import axios from 'axios';
-import { GeometryObject, Topology } from 'topojson-specification';
-import topology from '../../data/states-10m.json';
-import {
-  BasicState,
-  ExtendedState,
-  IncomingState,
-  StateProperties,
-} from '../types';
+import { BasicState, ExtendedState, IncomingState } from '../types';
 
 const baseUrl = 'https://covidtracking.com/api/v1/states/';
 
@@ -51,28 +44,8 @@ const getAllData = async (): Promise<ExtendedState[]> => {
   return result;
 };
 
-const updateGeometries = async (): Promise<
-  GeometryObject<StateProperties>[]
-> => {
-  const states = await getAllData();
-  return topology.objects.states.geometries.map((place) => {
-    const stateToCopy = states.find((state) => state.fips === place.id);
-    const newPlace = JSON.parse(JSON.stringify(place));
-    newPlace.properties = { ...place.properties, ...stateToCopy };
-    return newPlace;
-  });
-};
-
-const newTopology = async (): Promise<Topology> => {
-  const topologyClone = JSON.parse(JSON.stringify(topology));
-  topologyClone.objects.states.geometries = await updateGeometries();
-  return topologyClone;
-};
-
 export default {
   getStateStats,
   getAllData,
   get3DayTotal,
-  newTopology,
-  updateGeometries,
 };
