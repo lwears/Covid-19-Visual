@@ -35,16 +35,18 @@ const MapChart: React.FC<MapChartProps> = (props) => {
 
   const fillColour = (value: number) => {
     switch (true) {
-      case value < 50:
+      case value < 25:
         return '#ffd54f';
+      case value > 25 && value < 50:
+        return '#ffc048';
       case value > 50 && value < 100:
-        return '#ffb544';
+        return '#ffab40';
       case value > 100 && value < 200:
-        return '#ffa13c';
+        return '#ff9638';
       case value > 200 && value < 300:
         return '#ff8131';
       case value > 300 && value < 400:
-        return '#ff6126';
+        return '#ff6c2a';
       default:
         return '#ff5722';
     }
