@@ -1,77 +1,100 @@
 import React, { memo } from 'react';
 import { ComposableMap, Geographies } from 'react-simple-maps';
+import { Tooltip, withStyles } from '@material-ui/core';
+
+import topology from '../data/states-10m.json';
 import Geography from './Geography';
-import { withStyles } from '@material-ui/core/styles';
-import Tooltip from '@material-ui/core/Tooltip';
-import Typography from '@material-ui/core/Typography';
+import StateTooltip from './StateTooltip';
 
-const HtmlTooltip = withStyles((theme) => ({
-  tooltip: {
-    backgroundColor: '#f5f5f9',
-    color: 'rgba(0, 0, 0, 0.87)',
-    maxWidth: 220,
-    fontSize: theme.typography.pxToRem(12),
-    border: '1px solid #dadde9',
-  },
-}))(Tooltip);
+interface StateProperties {
+  name: string;
+  state: string;
+  hospitalizedCurrently: number;
+  fips: string;
+  total3Days: number;
+  death: number;
+  recovered: number;
+}
 
-const MapChart = () => {
+interface MapChartProps {
+  stateCovidStats: StateProperties[];
+}
+
+const MapChart: React.FC<MapChartProps> = (props) => {
+  const { stateCovidStats } = props;
+
+  const HtmlTooltip = withStyles((theme) => ({
+    tooltip: {
+      backgroundColor: '#f5f5f9',
+      color: 'rgba(0, 0, 0, 0.87)',
+      maxWidth: 300,
+      fontSize: theme.typography.pxToRem(12),
+      border: '2px solid #dadde9',
+    },
+  }))(Tooltip);
+
+  const fillColour = (value: number) => {
+    switch (true) {
+      case value < 50:
+        return '#ffd54f';
+      case value > 50 && value < 100:
+        return '#ffb544';
+      case value > 100 && value < 200:
+        return '#ffa13c';
+      case value > 200 && value < 300:
+        return '#ff8131';
+      case value > 300 && value < 400:
+        return '#ff6126';
+      default:
+        return '#ff5722';
+    }
+  };
+
   return (
-    <>
-      <ComposableMap data-tip='' projection='geoAlbersUsa'>
-        <Geographies geography={'/api/covidstats'}>
-          {({ geographies }) =>
-            geographies.map((geo) => {
-              const { name, hospitalizedCurrently, total3Days, death, recovered } = geo.properties;
-              const fill =
-                total3Days < 50
-                  ? '#FFCC00'
-                  : total3Days > 50 && total3Days < 100
-                  ? '#FF9900'
-                  : total3Days > 100 && total3Days < 300
-                  ? '#FF6600'
-                  : '#FF0000';
-              return (
-                <HtmlTooltip
-                  key={geo.rsmKey}
-                  title={
-                    <React.Fragment>
-                      <Typography color='inherit'>{name}</Typography>
-                      <b>{'Currently Hospitalized: '}</b>
-                      {hospitalizedCurrently ? hospitalizedCurrently : 'N/A'}
-                      <br /> <b>{'Total Deaths(Last 3 days): '}</b>
-                      {total3Days}
-                      <br /> <b>{'Total Deaths: '}</b>
-                      {death}
-                      <br /> <b>{'Total Recovered: '}</b>
-                      {recovered ? recovered : 'N/A'}
-                    </React.Fragment>
-                  }
-                >
-                  <Geography
-                    geography={geo}
-                    style={{
-                      default: {
-                        fill: fill,
-                        outline: 'none',
-                      },
-                      hover: {
-                        outline: 'none',
-                        opacity: '0.3',
-                      },
-                      pressed: {
-                        fill: '#E42',
-                        outline: 'none',
-                      },
-                    }}
+    <ComposableMap height={500} projection="geoAlbersUsa">
+      <Geographies geography={topology}>
+        {({ geographies }) =>
+          geographies.map((geo) => {
+            const stateStats = stateCovidStats.find(
+              (state) => state.fips === geo.id
+            );
+            const { total3Days } = stateStats as StateProperties;
+
+            const fill = fillColour(total3Days);
+
+            return (
+              <HtmlTooltip
+                key={geo.rsmKey}
+                title={
+                  <StateTooltip
+                    stateCovidStats={stateStats as StateProperties}
+                    name={geo.properties.name}
                   />
-                </HtmlTooltip>
-              );
-            })
-          }
-        </Geographies>
-      </ComposableMap>
-    </>
+                }
+              >
+                <Geography
+                  geography={geo}
+                  style={{
+                    default: {
+                      fill,
+                      outline: 'none',
+                    },
+                    hover: {
+                      outline: 'none',
+                      fill: '#90caf9',
+                    },
+                    pressed: {
+                      fill: '#1e88e5',
+                      outline: 'none',
+                    },
+                  }}
+                />
+              </HtmlTooltip>
+            );
+          })
+        }
+      </Geographies>
+    </ComposableMap>
   );
 };
 

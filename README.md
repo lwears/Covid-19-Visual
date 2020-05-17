@@ -19,6 +19,7 @@ If the web browser doesnt open automatically browse to https://localhost:3000
 ## Frontend
 
 - React
+- Material UI
 - TypeScript
 
 ## Backend
