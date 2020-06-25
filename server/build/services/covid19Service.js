@@ -25,7 +25,7 @@ const getStateStats = () => __awaiter(void 0, void 0, void 0, function* () {
     }));
 });
 const get3DayTotal = (stateName) => __awaiter(void 0, void 0, void 0, function* () {
-    const { data } = yield axios_1.default.get(`${baseUrl}${stateName}/daily.json`);
+    const { data } = yield axios_1.default.get(`${baseUrl}${stateName.toLowerCase()}/daily.json`);
     return data.slice(0, 3).reduce((total, place) => {
         return total + place.deathIncrease;
     }, 0);
