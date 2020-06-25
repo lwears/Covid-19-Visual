@@ -17,7 +17,9 @@ const getStateStats = async (): Promise<BasicState[]> => {
 };
 
 const get3DayTotal = async (stateName: string): Promise<number> => {
-  const { data } = await axios.get(`${baseUrl}${stateName}/daily.json`);
+  const { data } = await axios.get(
+    `${baseUrl}${stateName.toLowerCase()}/daily.json`
+  );
   return data.slice(0, 3).reduce((total: number, place: IncomingState) => {
     return total + place.deathIncrease;
   }, 0);
