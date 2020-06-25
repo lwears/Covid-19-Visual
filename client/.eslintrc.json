@@ -4,8 +4,12 @@
         "es6": true
     },
     "extends": [
+        "airbnb",
         "plugin:react/recommended",
-        "airbnb"
+        "plugin:@typescript-eslint/recommended",
+        "prettier/react",
+        "prettier/@typescript-eslint",
+        "plugin:prettier/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -14,7 +18,10 @@
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
-            "jsx": true
+            "jsx": true,
+            "tsx": true,
+            "ts":   true,
+            "js": true
         },
         "ecmaVersion": 11,
         "sourceType": "module"
@@ -23,6 +30,28 @@
         "react",
         "@typescript-eslint"
     ],
+    "settings": {
+        "import/resolver": {
+          "node": {
+            "extensions": [".js", ".jsx", ".ts", ".tsx"],
+            "moduleDirectory": ["node_modules", "./src"]
+          }
+        }
+    },
     "rules": {
+        "prettier/prettier": ["error", { "singleQuote": true }],
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+              "js": "never",
+              "jsx": "never",
+              "ts": "never",
+              "tsx": "never"
+            }
+          ],
+          "react/prop-types": 0
     }
 }

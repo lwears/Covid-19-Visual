@@ -62,7 +62,7 @@ const Geography = React.forwardRef(
 
     return (
       <path
-        ref={ref}
+        ref={ref as any}
         tabIndex={Number('0')}
         className={`rsm-geography ${className}`}
         d={geography.svgPath}
