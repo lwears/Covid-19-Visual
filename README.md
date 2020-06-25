@@ -1,6 +1,6 @@
 # Covid-19 Visualiser
 
-Covid-19 Visualiser
+Covid-19 Visualiser using https://covidtracking.com/api 
 
 #### Deployed via Heroku:
 https://lwears-covid19-visualizer.herokuapp.com/
@@ -9,8 +9,8 @@ https://lwears-covid19-visualizer.herokuapp.com/
 
 - Clone repo
 - npm install
-- npm install-client
-- npm build-client
+- npm run install-client
+- npm run build-client
 - npm start
 
 If the web browser doesnt open automatically browse to https://localhost:3000

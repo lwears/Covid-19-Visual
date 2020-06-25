@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Covid 19 Visualizer",
   "main": "index.js",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {},
   "scripts": {
     "install": "cd server && npm install",
